@@ -6,6 +6,10 @@
 //  Copyright © 2017 Bezzangi. All rights reserved.
 //
 
+
+// core data
+// https://www.youtube.com/watch?v=My2TP_tnyk4
+
 import UIKit
 
 class Main: UIViewController {
