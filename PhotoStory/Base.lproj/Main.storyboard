@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-15.199999999999999" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="NVe-oL-hVE">
             <objects>
-                <viewController id="hPA-Jh-raE" customClass="ViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hPA-Jh-raE" customClass="CameraViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L5H-Wq-397"/>
                         <viewControllerLayoutGuide type="bottom" id="E9w-bu-rsO"/>
@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="863" y="124"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit View Controller-->
         <scene sceneID="3yW-Bn-9Wh">
             <objects>
-                <viewController id="a0j-OH-bOi" customClass="ViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a0j-OH-bOi" customClass="EditViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WI6-kP-w62"/>
                         <viewControllerLayoutGuide type="bottom" id="r6u-SV-Cgw"/>
@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="1698" y="124"/>
         </scene>
-        <!--View Controller-->
+        <!--Story View Controller-->
         <scene sceneID="mpD-gD-3ct">
             <objects>
-                <viewController id="CPI-7b-zp5" customClass="ViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CPI-7b-zp5" customClass="StoryViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ohc-N8-qs8"/>
                         <viewControllerLayoutGuide type="bottom" id="wKi-Td-xjR"/>
@@ -166,7 +166,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GPX-xc-23B"/>
-        <segue reference="rFs-tE-s1U"/>
+        <segue reference="5SG-gK-tXL"/>
+        <segue reference="i2e-wE-sfS"/>
     </inferredMetricsTieBreakers>
 </document>

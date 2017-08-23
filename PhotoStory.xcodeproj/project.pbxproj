@@ -15,6 +15,9 @@
 		B27958A71F4DD44A00938BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27958A51F4DD44A00938BAD /* LaunchScreen.storyboard */; };
 		B27958B21F4DD44A00938BAD /* PhotoStoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958B11F4DD44A00938BAD /* PhotoStoryTests.swift */; };
 		B27958BD1F4DD44A00938BAD /* PhotoStoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958BC1F4DD44A00938BAD /* PhotoStoryUITests.swift */; };
+		B27958CD1F4DE86900938BAD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958CC1F4DE86900938BAD /* CameraViewController.swift */; };
+		B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958CE1F4DE89A00938BAD /* EditViewController.swift */; };
+		B27958D11F4DE8C200938BAD /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958D01F4DE8C200938BAD /* StoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		B27958B81F4DD44A00938BAD /* PhotoStoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoStoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27958BC1F4DD44A00938BAD /* PhotoStoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStoryUITests.swift; sourceTree = "<group>"; };
 		B27958BE1F4DD44A00938BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B27958CC1F4DE86900938BAD /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		B27958CE1F4DE89A00938BAD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		B27958D01F4DE8C200938BAD /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +105,8 @@
 		B27958981F4DD44A00938BAD /* PhotoStory */ = {
 			isa = PBXGroup;
 			children = (
+				B27958CB1F4DE83800938BAD /* ViewController */,
 				B27958991F4DD44A00938BAD /* AppDelegate.swift */,
-				B279589B1F4DD44A00938BAD /* Main.swift */,
 				B279589D1F4DD44A00938BAD /* Main.storyboard */,
 				B27958A31F4DD44A00938BAD /* Assets.xcassets */,
 				B27958A51F4DD44A00938BAD /* LaunchScreen.storyboard */,
@@ -126,6 +132,17 @@
 				B27958BE1F4DD44A00938BAD /* Info.plist */,
 			);
 			path = PhotoStoryUITests;
+			sourceTree = "<group>";
+		};
+		B27958CB1F4DE83800938BAD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B279589B1F4DD44A00938BAD /* Main.swift */,
+				B27958CC1F4DE86900938BAD /* CameraViewController.swift */,
+				B27958CE1F4DE89A00938BAD /* EditViewController.swift */,
+				B27958D01F4DE8C200938BAD /* StoryViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B27958D11F4DE8C200938BAD /* StoryViewController.swift in Sources */,
+				B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */,
 				B27958A21F4DD44A00938BAD /* PhotoStory.xcdatamodeld in Sources */,
+				B27958CD1F4DE86900938BAD /* CameraViewController.swift in Sources */,
 				B279589C1F4DD44A00938BAD /* Main.swift in Sources */,
 				B279589A1F4DD44A00938BAD /* AppDelegate.swift in Sources */,
 			);
