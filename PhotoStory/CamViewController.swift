@@ -5,6 +5,9 @@
 //  Created by Younghwa Park on 24/08/2017.
 //  Copyright © 2017 Bezzangi. All rights reserved.
 //
+// https://stackoverflow.com/questions/28756363/how-to-capture-picture-with-avcapturesession-in-swift
+// https://github.com/linhcn/AVCamSample
+
 
 import UIKit
 import AVFoundation
@@ -24,13 +27,16 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     @IBAction func takeItBtn(_ sender: AnyObject) {
         // 플래시 및 카메라 관련 설정
         let settingsForMonitoring = AVCapturePhotoSettings()
-        settingsForMonitoring.flashMode = .auto
+        //settingsForMonitoring.flashMode = .auto
         settingsForMonitoring.isAutoStillImageStabilizationEnabled = true
-        settingsForMonitoring.isHighResolutionPhotoEnabled = false
+        //settingsForMonitoring.isHighResolutionPhotoEnabled = false
+        settingsForMonitoring.isHighResolutionPhotoEnabled = true
+        
         // 촬영셔터 누름
         
         let position = input?.device.position
-        settingsForMonitoring.flashMode = position == .front || position == .unspecified ? .off : .auto
+        //settingsForMonitoring.flashMode = position == .front || position == .unspecified ? .off : .auto
+        settingsForMonitoring.flashMode = .off
         
         stillImageOutput?.capturePhoto(with: settingsForMonitoring, delegate: self)
     }
@@ -95,6 +101,14 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+//    optional func photoOutput(_ output: AVCapturePhotoOutput,
+//                              didFinishProcessingPhoto photo: AVCapturePhoto,
+//                              error: Error?){
+//        NSLog (photo)
+//    }
+//    
     
     
 }

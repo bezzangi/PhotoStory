@@ -9,6 +9,10 @@
 
 // core data
 // https://www.youtube.com/watch?v=My2TP_tnyk4
+// http://seorenn.blogspot.kr/2014/03/iososx-coredata-1.html
+// https://stackoverflow.com/questions/36397971/multiple-images-in-a-single-entry-core-data-in-swift
+// https://petermcintyre.com/topics/uiimage-in-core-data/
+
 
 import UIKit
 
