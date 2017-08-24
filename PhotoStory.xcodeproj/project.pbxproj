@@ -19,6 +19,7 @@
 		B27958CD1F4DE86900938BAD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958CC1F4DE86900938BAD /* CameraViewController.swift */; };
 		B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958CE1F4DE89A00938BAD /* EditViewController.swift */; };
 		B27958D11F4DE8C200938BAD /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958D01F4DE8C200938BAD /* StoryViewController.swift */; };
+		B2EA93DF1F4F1B7A00E75B29 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EA93DE1F4F1B7A00E75B29 /* PhotoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B27958CC1F4DE86900938BAD /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		B27958CE1F4DE89A00938BAD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		B27958D01F4DE8C200938BAD /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		B2EA93DE1F4F1B7A00E75B29 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				B27958A51F4DD44A00938BAD /* LaunchScreen.storyboard */,
 				B27958A81F4DD44A00938BAD /* Info.plist */,
 				B27958A01F4DD44A00938BAD /* PhotoStory.xcdatamodeld */,
+				B2EA93DE1F4F1B7A00E75B29 /* PhotoManager.swift */,
 			);
 			path = PhotoStory;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			files = (
 				AA6B1B751F4EA6ED00DB3B45 /* CamViewController.swift in Sources */,
 				B27958D11F4DE8C200938BAD /* StoryViewController.swift in Sources */,
+				B2EA93DF1F4F1B7A00E75B29 /* PhotoManager.swift in Sources */,
 				B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */,
 				B27958A21F4DD44A00938BAD /* PhotoStory.xcdatamodeld in Sources */,
 				B27958CD1F4DE86900938BAD /* CameraViewController.swift in Sources */,

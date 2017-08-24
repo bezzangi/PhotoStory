@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -133,10 +133,16 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Flash" id="XoC-7I-UoF">
-                                        <connections>
-                                            <action selector="btnFlashClicked:" destination="hPA-Jh-raE" id="Sv4-fU-qDE"/>
-                                        </connections>
+                                    <barButtonItem title="Item" id="TuG-A2-wLn"/>
+                                    <barButtonItem style="plain" id="p6g-t2-lP7">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Irn-SG-chN">
+                                            <rect key="frame" x="60" y="7" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="btnFlashClicked:" destination="hPA-Jh-raE" eventType="touchUpInside" id="kXP-DF-fsI"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fDJ-Pr-DXq"/>
                                     <barButtonItem style="plain" id="b0d-NW-uco">
@@ -156,7 +162,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="f/r"/>
                                             <connections>
-                                                <action selector="btnFrClicked:" destination="hPA-Jh-raE" eventType="touchUpInside" id="piq-k8-YWF"/>
+                                                <action selector="btnFrClicked:" destination="hPA-Jh-raE" eventType="touchUpInside" id="5Qa-Jd-eVa"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
@@ -172,6 +178,7 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="XHR-hu-bvw" id="cRy-d3-5RS"/>
+                        <outlet property="toolBar" destination="RBX-52-Soo" id="xIj-KE-iP5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVF-M8-rKr" sceneMemberID="firstResponder"/>
@@ -197,12 +204,13 @@
                                     <navigationItem title="편집" id="qYB-8F-f1n">
                                         <barButtonItem key="leftBarButtonItem" title="취소" id="4ZO-D9-unW">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="zBn-9m-2y9"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="Main" id="zBn-9m-2y9"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="완료" id="VMP-2d-eHz">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="rFs-tE-s1U"/>
+                                                <action selector="doneClicked:" destination="a0j-OH-bOi" id="gBz-DV-nVZ"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="edit_done" id="jwK-JQ-f4A"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -211,10 +219,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="btnDone" destination="VMP-2d-eHz" id="9ys-dF-afs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtn-u9-IY6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1698" y="124"/>
+            <point key="canvasLocation" x="1879" y="26"/>
         </scene>
         <!--Story View Controller-->
         <scene sceneID="mpD-gD-3ct">
@@ -273,7 +284,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="jwK-JQ-f4A"/>
         <segue reference="GPX-xc-23B"/>
-        <segue reference="xpx-A6-MnF"/>
     </inferredMetricsTieBreakers>
 </document>
