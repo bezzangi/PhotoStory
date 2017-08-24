@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +29,7 @@
                                     <navigationItem title="홈" id="BUX-jp-K55">
                                         <barButtonItem key="rightBarButtonItem" title="추가" id="ZzK-Dz-EKm">
                                             <connections>
-                                                <segue destination="hPA-Jh-raE" kind="show" id="gbk-aL-VJg"/>
+                                                <segue destination="hPA-Jh-raE" kind="show" id="LcK-0R-5PP"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -50,10 +51,58 @@
             </objects>
             <point key="canvasLocation" x="-15.199999999999999" y="123.68815592203899"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Cam View Controller-->
+        <scene sceneID="T0V-qy-g3f">
+            <objects>
+                <viewController id="INO-Rv-qqZ" customClass="CamViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Pb-un-JwV"/>
+                        <viewControllerLayoutGuide type="bottom" id="XhV-lY-y8x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vq5-Tf-xEZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NeG-bW-JhQ">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="8Fg-Z7-TMV"/>
+                                    <barButtonItem title="Item" id="ZlH-gE-b1H">
+                                        <connections>
+                                            <action selector="takeItBtn:" destination="INO-Rv-qqZ" id="5G1-e5-DWk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBk-fT-MYI">
+                                <rect key="frame" x="16" y="0.0" width="343" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iBk-fT-MYI" firstAttribute="top" secondItem="vq5-Tf-xEZ" secondAttribute="topMargin" id="2DS-tf-tWq"/>
+                            <constraint firstItem="NeG-bW-JhQ" firstAttribute="top" secondItem="iBk-fT-MYI" secondAttribute="bottom" id="E56-Eh-jiG"/>
+                            <constraint firstItem="iBk-fT-MYI" firstAttribute="leading" secondItem="vq5-Tf-xEZ" secondAttribute="leadingMargin" id="K5r-kU-JgM"/>
+                            <constraint firstAttribute="bottom" secondItem="NeG-bW-JhQ" secondAttribute="bottom" id="REf-dn-Jnp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iBk-fT-MYI" secondAttribute="trailing" id="aAd-VO-ach"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="iBk-fT-MYI" id="WkB-Cl-UJw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EwZ-V4-Vcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511.19999999999999" y="-668.81559220389806"/>
+        </scene>
+        <!--Cam View Controller-->
         <scene sceneID="NVe-oL-hVE">
             <objects>
-                <viewController id="hPA-Jh-raE" customClass="CameraViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hPA-Jh-raE" customClass="CamViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L5H-Wq-397"/>
                         <viewControllerLayoutGuide type="bottom" id="E9w-bu-rsO"/>
@@ -80,13 +129,54 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBX-52-Soo">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Flash" id="XoC-7I-UoF">
+                                        <connections>
+                                            <action selector="btnFlashClicked:" destination="hPA-Jh-raE" id="Sv4-fU-qDE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fDJ-Pr-DXq"/>
+                                    <barButtonItem style="plain" id="b0d-NW-uco">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6n8-xy-2EC">
+                                            <rect key="frame" x="170" y="7" width="34" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Click"/>
+                                            <connections>
+                                                <action selector="takeItBtn:" destination="hPA-Jh-raE" eventType="touchUpInside" id="Vcu-uY-r2Q"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="VS2-Qm-z2L"/>
+                                    <barButtonItem style="plain" id="tfC-Ek-XW4">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lNz-xi-E0a">
+                                            <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="f/r"/>
+                                            <connections>
+                                                <action selector="btnFrClicked:" destination="hPA-Jh-raE" eventType="touchUpInside" id="piq-k8-YWF"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHR-hu-bvw">
+                                <rect key="frame" x="67" y="107" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="XHR-hu-bvw" id="cRy-d3-5RS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVF-M8-rKr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="863" y="124"/>
+            <point key="canvasLocation" x="861.60000000000002" y="123.68815592203899"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="3yW-Bn-9Wh">
@@ -164,9 +254,26 @@
             </objects>
             <point key="canvasLocation" x="300" y="885"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="cVP-bl-0NX">
+            <objects>
+                <viewController id="wmV-5x-E2u" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tj4-zL-HPc"/>
+                        <viewControllerLayoutGuide type="bottom" id="RiT-rf-dV4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xwg-qS-iBi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ud-gP-9MN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5SG-gK-tXL"/>
-        <segue reference="i2e-wE-sfS"/>
+        <segue reference="GPX-xc-23B"/>
+        <segue reference="xpx-A6-MnF"/>
     </inferredMetricsTieBreakers>
 </document>

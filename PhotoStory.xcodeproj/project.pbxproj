@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA6B1B751F4EA6ED00DB3B45 /* CamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6B1B741F4EA6ED00DB3B45 /* CamViewController.swift */; };
 		B279589A1F4DD44A00938BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958991F4DD44A00938BAD /* AppDelegate.swift */; };
 		B279589C1F4DD44A00938BAD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279589B1F4DD44A00938BAD /* Main.swift */; };
 		B279589F1F4DD44A00938BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B279589D1F4DD44A00938BAD /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA6B1B741F4EA6ED00DB3B45 /* CamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamViewController.swift; sourceTree = "<group>"; };
 		B27958961F4DD44A00938BAD /* PhotoStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27958991F4DD44A00938BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B279589B1F4DD44A00938BAD /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				B27958CC1F4DE86900938BAD /* CameraViewController.swift */,
 				B27958CE1F4DE89A00938BAD /* EditViewController.swift */,
 				B27958D01F4DE8C200938BAD /* StoryViewController.swift */,
+				AA6B1B741F4EA6ED00DB3B45 /* CamViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				TargetAttributes = {
 					B27958951F4DD44A00938BAD = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = RTV3TLHM8L;
 						ProvisioningStyle = Automatic;
 					};
 					B27958AC1F4DD44A00938BAD = {
@@ -279,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6B1B751F4EA6ED00DB3B45 /* CamViewController.swift in Sources */,
 				B27958D11F4DE8C200938BAD /* StoryViewController.swift in Sources */,
 				B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */,
 				B27958A21F4DD44A00938BAD /* PhotoStory.xcdatamodeld in Sources */,
@@ -436,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RTV3TLHM8L;
 				INFOPLIST_FILE = PhotoStory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = club.bezzabgi.PhotoStory;
@@ -448,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RTV3TLHM8L;
 				INFOPLIST_FILE = PhotoStory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = club.bezzabgi.PhotoStory;
@@ -529,6 +536,7 @@
 				B27958C31F4DD44A00938BAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B27958C41F4DD44A00938BAD /* Build configuration list for PBXNativeTarget "PhotoStoryTests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +545,7 @@
 				B27958C61F4DD44A00938BAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B27958C71F4DD44A00938BAD /* Build configuration list for PBXNativeTarget "PhotoStoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -545,6 +554,7 @@
 				B27958C91F4DD44A00938BAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
