@@ -25,6 +25,9 @@
 // https://www.weheartswift.com/how-to-make-a-simple-table-view-with-ios-8-and-swift/
 
 // core data
+// https://www.youtube.com/watch?v=da6W7wDh0Dw
+// https://www.youtube.com/watch?v=FPQS0bfdhGc
+
 
 import UIKit
 import CoreData
