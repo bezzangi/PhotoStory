@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EditViewController: UIViewController {
 
@@ -121,10 +122,40 @@ class EditViewController: UIViewController {
         
         if (segue.identifier == "edit_done") {
             NSLog("save files...")
+            save()
         } else {
             
         }
     }
+    
+    
+    func save() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Story",
+                                                in: managedContext)!
+        
+        let story = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        NSLog (tvTitle.text!)
+        NSLog (tvMemo.text)
+        
+        story.setValue(tvTitle.text, forKeyPath: "title")
+        story.setValue(tvMemo.text, forKeyPath: "memo")
+        story.setValue(datePicker.date, forKeyPath: "when")
+        
+        do {
+            try managedContext.save()
+            PhotoManager.sharedInstance.storyArr.append(story)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    
+    
     
     
     func saveImageToDocumentDirectory(_ chosenImage: UIImage, snum:Int, fnum:Int) -> String {

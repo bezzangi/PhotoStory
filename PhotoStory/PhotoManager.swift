@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class PhotoManager {
         //MARK: Shared Instance
@@ -18,6 +19,7 @@ final class PhotoManager {
     
     var imageArr : [UIImage]? = []
     var scrollVSize:CGSize? = nil
+    var storyArr: [NSManagedObject] = []
     
     func addImage(img:UIImage) {
         imageArr?.append(img)

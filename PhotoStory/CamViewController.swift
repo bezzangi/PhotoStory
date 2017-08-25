@@ -101,8 +101,6 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
                 if (captureSesssion.canAddOutput(stillImageOutput)) {
                     captureSesssion.addOutput(stillImageOutput)
                     captureSesssion.startRunning() // 카메라 시작
-                    
-                    
                     initCamera()
                     initOutput()
 

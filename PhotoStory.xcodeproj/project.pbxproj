@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA6B1B751F4EA6ED00DB3B45 /* CamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6B1B741F4EA6ED00DB3B45 /* CamViewController.swift */; };
+		AA9F3D301F4FEA7D0049A1CB /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9F3D2F1F4FEA7D0049A1CB /* MyTableViewCell.swift */; };
 		B279589A1F4DD44A00938BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27958991F4DD44A00938BAD /* AppDelegate.swift */; };
 		B279589C1F4DD44A00938BAD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279589B1F4DD44A00938BAD /* Main.swift */; };
 		B279589F1F4DD44A00938BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B279589D1F4DD44A00938BAD /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		AA6B1B741F4EA6ED00DB3B45 /* CamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamViewController.swift; sourceTree = "<group>"; };
+		AA9F3D2F1F4FEA7D0049A1CB /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		B27958961F4DD44A00938BAD /* PhotoStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27958991F4DD44A00938BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B279589B1F4DD44A00938BAD /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA9F3D2E1F4FEA3C0049A1CB /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				AA9F3D2F1F4FEA7D0049A1CB /* MyTableViewCell.swift */,
+			);
+			name = CustomUI;
+			sourceTree = "<group>";
+		};
 		B279588D1F4DD44A00938BAD = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		B27958981F4DD44A00938BAD /* PhotoStory */ = {
 			isa = PBXGroup;
 			children = (
+				AA9F3D2E1F4FEA3C0049A1CB /* CustomUI */,
 				B27958CB1F4DE83800938BAD /* ViewController */,
 				B27958991F4DD44A00938BAD /* AppDelegate.swift */,
 				B279589D1F4DD44A00938BAD /* Main.storyboard */,
@@ -291,6 +302,7 @@
 				B2EA93DF1F4F1B7A00E75B29 /* PhotoManager.swift in Sources */,
 				B27958CF1F4DE89A00938BAD /* EditViewController.swift in Sources */,
 				B27958A21F4DD44A00938BAD /* PhotoStory.xcdatamodeld in Sources */,
+				AA9F3D301F4FEA7D0049A1CB /* MyTableViewCell.swift in Sources */,
 				B27958CD1F4DE86900938BAD /* CameraViewController.swift in Sources */,
 				B279589C1F4DD44A00938BAD /* Main.swift in Sources */,
 				B279589A1F4DD44A00938BAD /* AppDelegate.swift in Sources */,

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,6 +26,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="홈" id="BUX-jp-K55">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="Flm-pn-aFf">
+                                            <connections>
+                                                <segue destination="CPI-7b-zp5" kind="show" identifier="Edit" id="aYX-uX-uuT"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="추가" id="ZzK-Dz-EKm">
                                             <connections>
                                                 <segue destination="hPA-Jh-raE" kind="show" id="LcK-0R-5PP"/>
@@ -35,69 +39,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTd-Xh-ihq">
-                                <rect key="frame" x="168" y="318" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="스토리"/>
-                                <connections>
-                                    <segue destination="CPI-7b-zp5" kind="show" id="co5-AB-Vrq"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15.199999999999999" y="123.68815592203899"/>
-        </scene>
-        <!--Cam View Controller-->
-        <scene sceneID="T0V-qy-g3f">
-            <objects>
-                <viewController id="INO-Rv-qqZ" customClass="CamViewController" customModule="PhotoStory" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0Pb-un-JwV"/>
-                        <viewControllerLayoutGuide type="bottom" id="XhV-lY-y8x"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vq5-Tf-xEZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NeG-bW-JhQ">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="8Fg-Z7-TMV"/>
-                                    <barButtonItem title="Item" id="ZlH-gE-b1H">
-                                        <connections>
-                                            <action selector="takeItBtn:" destination="INO-Rv-qqZ" id="5G1-e5-DWk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBk-fT-MYI">
-                                <rect key="frame" x="16" y="0.0" width="343" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="iBk-fT-MYI" firstAttribute="top" secondItem="vq5-Tf-xEZ" secondAttribute="topMargin" id="2DS-tf-tWq"/>
-                            <constraint firstItem="NeG-bW-JhQ" firstAttribute="top" secondItem="iBk-fT-MYI" secondAttribute="bottom" id="E56-Eh-jiG"/>
-                            <constraint firstItem="iBk-fT-MYI" firstAttribute="leading" secondItem="vq5-Tf-xEZ" secondAttribute="leadingMargin" id="K5r-kU-JgM"/>
-                            <constraint firstAttribute="bottom" secondItem="NeG-bW-JhQ" secondAttribute="bottom" id="REf-dn-Jnp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iBk-fT-MYI" secondAttribute="trailing" id="aAd-VO-ach"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="cameraView" destination="iBk-fT-MYI" id="WkB-Cl-UJw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EwZ-V4-Vcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="511.19999999999999" y="-668.81559220389806"/>
+            <point key="canvasLocation" x="112.8" y="311.69415292353824"/>
         </scene>
         <!--Cam View Controller-->
         <scene sceneID="NVe-oL-hVE">
@@ -133,10 +81,9 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="TuG-A2-wLn"/>
                                     <barButtonItem style="plain" id="p6g-t2-lP7">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Irn-SG-chN">
-                                            <rect key="frame" x="60" y="7" width="46" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="46" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
@@ -263,28 +210,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rem-LG-lZR" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="885"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="cVP-bl-0NX">
-            <objects>
-                <viewController id="wmV-5x-E2u" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tj4-zL-HPc"/>
-                        <viewControllerLayoutGuide type="bottom" id="RiT-rf-dV4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xwg-qS-iBi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2ud-gP-9MN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
+            <point key="canvasLocation" x="1121" y="993"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jwK-JQ-f4A"/>
-        <segue reference="GPX-xc-23B"/>
+        <segue reference="5SG-gK-tXL"/>
+        <segue reference="zBn-9m-2y9"/>
     </inferredMetricsTieBreakers>
 </document>
