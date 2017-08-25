@@ -28,6 +28,17 @@
 // https://www.youtube.com/watch?v=da6W7wDh0Dw
 // https://www.youtube.com/watch?v=FPQS0bfdhGc
 
+웹서버 엑셀 문서 읽기 라이브러리 수정
+
+증상 : 워닝 메시지 발생
+원인 : php 문법 변화
+조치 :  /data/www/html/lib/Excel/reader.php 파일 수정
+관련 문서 :
+https://stackoverflow.com/questions/17187970/deprecated-assigning-the-return-value-of-new-by-reference-is-deprecated-in-phpe
+
+
+
+
 
 import UIKit
 import CoreData
