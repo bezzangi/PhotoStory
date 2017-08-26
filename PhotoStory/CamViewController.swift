@@ -53,10 +53,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         scrollView.initUI()
         
         scrollView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width:width, height:CGFloat(height))
-
-        //        scrollView.backgroundColor = UIColor.red
-//        scrollView.isScrollEnabled = true
-        
+       
         view.addSubview(scrollView)
         view.addSubview(previewView)
     }
@@ -64,6 +61,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "cancel") {
+            PhotoManager.sharedInstance.imageArr?.removeAll()
             return true
         }
         if (PhotoManager.sharedInstance.imageArr?.count == 0) {
@@ -139,23 +137,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
             
             
             scrollView.addImage(image: image!)
-            
-            
-//            var aratio = (image?.size.height)! / (image?.size.width)!
-//            var iv = UIImageView()
-//            let ivHeight = scrollView.bounds.height-10
-//            let ivWidth = ivHeight / aratio
-//            
-//            iv.frame = CGRect(x: ivx, y: 5, width: Int(ivWidth), height: Int(ivHeight))
-//            scrollView.addSubview(iv)
-//            iv.image = image
-//            
-//            ivx += Int(ivWidth) + 5
-//            
-//            var size = scrollView.contentSize
-//            size.width += iv.bounds.width+5
-//            scrollView.contentSize = size
-            
+                        
             PhotoManager.sharedInstance.imageArr?.append(image!)
         }
     }
@@ -175,19 +157,6 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
     var cameraKind = ".back"
     
-    
-//    func getDevice(position: AVCaptureDevicePosition) -> AVCaptureDevice? {
-//        let devices: NSArray = AVCaptureDevice.devices()! as NSArray;
-//        for de in devices {
-//            let deviceConverted = de as! AVCaptureDevice
-//            if(deviceConverted.position == position){
-//                return deviceConverted
-//            }
-//        }
-//        return nil
-//    }
-//    
-
     func initCamera() {
         //        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
@@ -265,17 +234,6 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         NSLog("Flash~")
         toggleFlash()
     }
-    
-    
-  
-    
-//    optional func photoOutput(_ output: AVCapturePhotoOutput,
-//                              didFinishProcessingPhoto photo: AVCapturePhoto,
-//                              error: Error?){
-//        NSLog (photo)
-//    }
-//    
-   
 }
 
 

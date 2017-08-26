@@ -22,19 +22,16 @@ class StoryViewController: UIViewController {
         var y = 70
         let offset = 5
         
-        
-//        let index = PhotoManager.sharedInstance.index
-//        let story = PhotoManager.sharedInstance.storyArr[index]
         let story = PhotoManager.sharedInstance.selectedStory
-         
         let width = Int(w)-offset * 2
-        
         let size = PhotoManager.sharedInstance.scrollVSize
         
-//        scrollView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width:(size?.width)!, height:CGFloat((size?.height)!))
         scrollView.initUI()
         scrollView.frame = CGRect(x: offset, y: y, width:Int((size?.width)!), height: Int((size?.height)!))
-        scrollView.addImageUsingPaths(paths: story?.value(forKey: "photos") as! NSString)
+        
+        let photoArr:NSMutableSet = (story?.mutableSetValue(forKey: "photo"))!
+        scrollView.addImageUsingMutableSet(set: photoArr)
+        
         view.addSubview(scrollView)
         
         y = y + Int(scrollView.bounds.height) + offset

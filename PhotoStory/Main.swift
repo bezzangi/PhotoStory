@@ -112,7 +112,6 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         tfFind.isHidden = false
         tfFind.backgroundColor = UIColor.white
         tfFind.layer.cornerRadius = 5
-//        tfFind.addTarget(self, action: "tfFindChanged:", for: UIControlEvents.editingChanged)
         tfFind.delegate = self
         
         
@@ -166,82 +165,44 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
     }
     
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if (indexPath.row == 0) {
-//            return 100;
-//        }
-//        else {
-//            return 260;
-//        }
-//    }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        NSLog("Clicked...1")
-//    }
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-//        NSLog("Clicked...2")
-//    }
-    
+
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
         let allKeys = PhotoManager.sharedInstance.getSortedKeys()
         let key = allKeys[indexPath.section]
         
-//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[indexPath.section]
         let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
         let story = arr[indexPath.row] as! NSManagedObject
         
-        //print("You selected cell #\(indexPath.row)!")
-        
-        //PhotoManager.sharedInstance.index = indexPath.row
         PhotoManager.sharedInstance.selectedStory = story
 
         performSegue(withIdentifier: "Edit", sender: nil)
     }
 
-//}
-//
-//
-//// MARK: - UITableViewDataSource
-//extension Main: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-//        NSLog ("Table count : \(PhotoManager.sharedInstance.storyArr.count)")
         let allKeys = PhotoManager.sharedInstance.getSortedKeys()
         let key = allKeys[section]
-        
-//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[section]
         let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
         return arr.count
-    //    return 1;
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-    //    return PhotoManager.sharedInstance.storyArr.count
         return PhotoManager.sharedInstance.monthStoryArray.count
-        //return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let allKeys = PhotoManager.sharedInstance.getSortedKeys()
         
         return allKeys[section] as String
-        
-        
-//        if (section==1) {
-//            return "Section 1"
-//        }
-//        return "Section"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let allKeys = PhotoManager.sharedInstance.getSortedKeys()
         let key = allKeys[indexPath.section]
-//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[indexPath.section]
         let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
         let story = arr[indexPath.row] as! NSManagedObject
         
-        //let story = PhotoManager.sharedInstance.storyArr[indexPath.row]
         let cell = MyTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "myIdentifier")
         
         let date = story.value(forKeyPath: "when") as? Date
@@ -254,18 +215,12 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         
         cell.myLabel1.text = story.value(forKeyPath: "title") as? String
         
-        let imgPaths = story.value(forKeyPath: "photos") as? String
         
-        if (imgPaths != nil) {
-            let imgArr = Util.getUIImageArr(filePaths: imgPaths! as NSString)
-            if (imgArr.count > 0) {
-                cell.iv.image = imgArr[0]
-            }
-        }
-        
-        
-        //NSLog("\(indexPath.row) : \(story.value(forKeyPath: "when") as? Date)")
-        
+        let photoArr:NSMutableSet = (story.mutableSetValue(forKey: "photo"))
+        let filePath = (photoArr.allObjects[0] as! NSManagedObject).value(forKey: "path") as! String
+        let image = Util.getUIImageArr(filePaths: filePath as NSString)[0]
+
+        cell.iv.image = image
         
         return cell
     }

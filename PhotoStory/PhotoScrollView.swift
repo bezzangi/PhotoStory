@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PhotoScrollView: UIScrollView {
     var imageArr : [UIImage]? = []
@@ -35,7 +36,7 @@ class PhotoScrollView: UIScrollView {
     func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        var bigImageView = UIImageView()
+        let bigImageView = UIImageView()
         bigImageView.frame = (self.superview?.frame)!
         bigImageView.image = tappedImage.image
         superview?.addSubview(bigImageView)
@@ -71,6 +72,14 @@ class PhotoScrollView: UIScrollView {
         let images = Util.getUIImageArr(filePaths: paths)
         for img in images {
             self.addImage(image: img)
+        }
+    }
+    
+    func addImageUsingMutableSet(set:NSMutableSet) {
+        for img in set {
+            let filePath = (img as! NSManagedObject).value(forKey: "path") as! String
+            let image = Util.getUIImageArr(filePaths: filePath as NSString)[0]
+            self.addImage(image: image)
         }
     }
     

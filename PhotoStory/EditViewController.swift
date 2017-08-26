@@ -74,9 +74,11 @@ class EditViewController: UIViewController, UITextViewDelegate {
             
             date = generateRandomDate(daysBack: 180)!
         } else {
-            //index = PhotoManager.sharedInstance.index
             story = PhotoManager.sharedInstance.selectedStory
-            scrollView.addImageUsingPaths(paths: story?.value(forKey: "photos") as! NSString)
+            
+            let photoArr:NSMutableSet = (story?.mutableSetValue(forKey: "photo"))!
+            scrollView.addImageUsingMutableSet(set: photoArr)
+            
             tvTitle.text = story?.value(forKey: "title") as? String
             tvMemo.text = story?.value(forKey: "memo") as! String
             date = story?.value(forKey: "when") as? Date
@@ -201,12 +203,23 @@ class EditViewController: UIViewController, UITextViewDelegate {
             NSLog (tvMemo.text)
             
             
+            let entityPhoto = NSEntityDescription.entity(forEntityName: "Photo",
+                                                         in: managedContext)!
+            
+            
             var filePaths = ""
             for img in PhotoManager.sharedInstance.imageArr! {
                 let index = PhotoManager.sharedInstance.imageArr?.index(of: img)
                 let filePath = saveImageToDocumentDirectory(img, snum: 0, fnum: index!) + "|"
                 filePaths.append(filePath)
+                let photo = NSManagedObject(entity: entityPhoto,
+                                            insertInto: managedContext)
+                photo.setValue(filePath, forKey: "path")
+                
+                let photoArr = story.mutableSetValue(forKey: "photo")
+                photoArr.addObjects(from: [photo as Any])
             }
+            
             filePaths = String(filePaths.characters.dropLast())
             
             PhotoManager.sharedInstance.imageArr?.removeAll()
@@ -214,7 +227,6 @@ class EditViewController: UIViewController, UITextViewDelegate {
             story.setValue(tvTitle.text, forKeyPath: "title")
             story.setValue(tvMemo.text, forKeyPath: "memo")
             story.setValue(date, forKey: "when")
-            story.setValue(filePaths, forKey: "photos")
             
             do {
                 try managedContext.save()

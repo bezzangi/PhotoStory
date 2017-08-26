@@ -35,6 +35,8 @@ class Util: NSObject {
         return rtv
     }
     
+    
+    
     static func getFileNumber() -> Int {
         var settingArr: [NSManagedObject] = []
         
@@ -118,27 +120,21 @@ class Util: NSObject {
         
         do {
             PhotoManager.sharedInstance.storyArr = try managedContext.fetch(fetchRequest)
-            for s in PhotoManager.sharedInstance.storyArr {
-                var toDelete = false
-                if (s.value(forKey: "when") == nil) {
-                    toDelete = true
-                } else if (s.value(forKey: "photos") == nil) {
-                    toDelete = true
-                }
-                //                else if (Util.getUIImageArr(filePaths:s.value(forKey: "photos") as! NSString).count == 0) {
-                //                    toDelete = true
-                //                }
-                //                toDelete = true
-                
-                if (toDelete) {
-                    managedContext.delete(s)
-                    do {
-                        try managedContext.save()
-                    } catch {
-                        
-                    }
-                }
-            }
+//            for s in PhotoManager.sharedInstance.storyArr {
+//                var toDelete = false
+//                if (s.value(forKey: "when") == nil) {
+//                    toDelete = true
+//                }
+//                
+//                if (toDelete) {
+//                    managedContext.delete(s)
+//                    do {
+//                        try managedContext.save()
+//                    } catch {
+//                        
+//                    }
+//                }
+//            }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
