@@ -28,13 +28,13 @@
 // https://www.youtube.com/watch?v=da6W7wDh0Dw
 // https://www.youtube.com/watch?v=FPQS0bfdhGc
 
-웹서버 엑셀 문서 읽기 라이브러리 수정
-
-증상 : 워닝 메시지 발생
-원인 : php 문법 변화
-조치 :  /data/www/html/lib/Excel/reader.php 파일 수정
-관련 문서 :
-https://stackoverflow.com/questions/17187970/deprecated-assigning-the-return-value-of-new-by-reference-is-deprecated-in-phpe
+//웹서버 엑셀 문서 읽기 라이브러리 수정
+//
+//증상 : 워닝 메시지 발생
+//원인 : php 문법 변화
+//조치 :  /data/www/html/lib/Excel/reader.php 파일 수정
+//관련 문서 :
+//https://stackoverflow.com/questions/17187970/deprecated-assigning-the-return-value-of-new-by-reference-is-deprecated-in-phpe
 
 
 
@@ -44,13 +44,37 @@ import UIKit
 import CoreData
 
 
-class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UITextFieldDelegate  {
 
-    
-    var _storyArr: [NSManagedObject] = []
-    
+    @IBOutlet weak var toolBar: UIToolbar!
     var tfFind = UITextField()
     var tableView = UITableView()
+    
+    
+    @IBOutlet weak var btnToHide1: UIBarButtonItem!
+    @IBOutlet weak var btnToHide2: UIButton!
+    
+    
+    @IBAction func deleteAll(_ sender: Any) {
+        Util.deletaAll()
+        tableView.reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        
+        PhotoManager.sharedInstance.keyword = textField.text!
+        if (PhotoManager.sharedInstance.keyword == "") {
+            Util.loadData()
+            tfFind.placeholder = "검색어를 입력하세요."
+        } else {
+            Util.loadData(keyword: PhotoManager.sharedInstance.keyword)
+        }
+        tableView.reloadData()
+        return true
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,22 +101,36 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
         var y = 80
         
         tfFind.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width: w - 2 * CGFloat(offset), height: CGFloat(40))
-        tfFind.text = "검색어를 입력하세요."
+        //tfFind.text = "검색어를 입력하세요."
+        if (PhotoManager.sharedInstance.keyword  == "") {
+            tfFind.placeholder = "검색어를 입력하세요."
+        } else {
+            tfFind.text = PhotoManager.sharedInstance.keyword
+        }
+        
         tfFind.alpha = 1.0
         tfFind.isHidden = false
         tfFind.backgroundColor = UIColor.white
         tfFind.layer.cornerRadius = 5
+//        tfFind.addTarget(self, action: "tfFindChanged:", for: UIControlEvents.editingChanged)
+        tfFind.delegate = self
         
         
         y += Int(tfFind.frame.height) + offset
-        let height = Int(h) - y - offset
+        let height = Int(h) - y - offset - Int(toolBar.bounds.height)
+        
         tableView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width: w - 2 * CGFloat(offset), height: CGFloat(height))
         tableView.backgroundColor = UIColor.white
         
         view.addSubview(tableView)
         view.addSubview(tfFind)
-//        view.willRemoveSubview(tableView)
         tableView.reloadData()
+        
+        setScrollViewScreenSize()
+        
+        btnToHide1.title=""
+//        btnToHide2.removeFromSuperview()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,30 +141,28 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Story")
-        do {
-            _storyArr = try managedContext.fetch(fetchRequest)
-            for s in _storyArr {
-                if (s.value(forKey: "when") == nil) {
-                    managedContext.delete(s)
-                    do {
-                        try managedContext.save()
-                    } catch {
-                        
-                    }
-                }
-            }
-            PhotoManager.sharedInstance.storyArr = _storyArr
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
+        //Util.loadData()
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: "Cell")
+    }
+    
+    
+    func setScrollViewScreenSize() {
+        let h = view.frame.height
+        let w = view.frame.width
+        
+        let offset = 5
+        var y = 70
+        
+        let width = w - 2 * CGFloat(offset)
+        
+        y = y + Int(width) + offset
+        
+        let height = Int(h) - y - offset - Int(toolBar.bounds.height)
+        
+        let size = CGSize(width: width, height: CGFloat(height))
+        
+        PhotoManager.sharedInstance.scrollVSize = size
     }
     
     
@@ -146,9 +182,20 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //    }
     
   
-    func tableView(_ tableView: UITableView!, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        let key = allKeys[indexPath.section]
         
+//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[indexPath.section]
+        let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
+        let story = arr[indexPath.row] as! NSManagedObject
+        
+        //print("You selected cell #\(indexPath.row)!")
+        
+        //PhotoManager.sharedInstance.index = indexPath.row
+        PhotoManager.sharedInstance.selectedStory = story
+
         performSegue(withIdentifier: "Edit", sender: nil)
     }
 
@@ -160,25 +207,41 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
 //        NSLog ("Table count : \(PhotoManager.sharedInstance.storyArr.count)")
-        return PhotoManager.sharedInstance.storyArr.count
+        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        let key = allKeys[section]
+        
+//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[section]
+        let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
+        return arr.count
     //    return 1;
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
     //    return PhotoManager.sharedInstance.storyArr.count
-        return 1
+        return PhotoManager.sharedInstance.monthStoryArray.count
+        //return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section==1) {
-            return "Section 1"
-        }
-        return "Section"
+        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        
+        return allKeys[section] as String
+        
+        
+//        if (section==1) {
+//            return "Section 1"
+//        }
+//        return "Section"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        let key = allKeys[indexPath.section]
+//        let key = PhotoManager.sharedInstance.monthStoryArray.allKeys[indexPath.section]
+        let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
+        let story = arr[indexPath.row] as! NSManagedObject
         
-        let story = PhotoManager.sharedInstance.storyArr[indexPath.row]
+        //let story = PhotoManager.sharedInstance.storyArr[indexPath.row]
         let cell = MyTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "myIdentifier")
         
         let date = story.value(forKeyPath: "when") as? Date
@@ -191,11 +254,20 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         cell.myLabel1.text = story.value(forKeyPath: "title") as? String
         
-        NSLog("\(indexPath.row) : \(story.value(forKeyPath: "when") as? Date)")
+        let imgPaths = story.value(forKeyPath: "photos") as? String
+        
+        if (imgPaths != nil) {
+            let imgArr = Util.getUIImageArr(filePaths: imgPaths! as NSString)
+            if (imgArr.count > 0) {
+                cell.iv.image = imgArr[0]
+            }
+        }
+        
+        
+        //NSLog("\(indexPath.row) : \(story.value(forKeyPath: "when") as? Date)")
         
         
         return cell
     }
-
 }
 

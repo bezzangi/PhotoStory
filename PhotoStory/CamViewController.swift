@@ -28,38 +28,52 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     
 
     var previewView = UIView()
-    var scrollView = UIScrollView()
+    
+    var scrollView = PhotoScrollView()
+    
     func initUI() {
         
         let h = view.frame.height
         let w = view.frame.width
         
-        let offset = 20
-        var y = 80
+        let offset = 5
+        var y = 70
         
         let width = w - 2 * CGFloat(offset)
         
         previewView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width:width, height:width)
-        
         previewView.alpha = 1.0
         previewView.isHidden = false
         previewView.layer.cornerRadius = 5
-        previewView.backgroundColor = UIColor.blue
+        //previewView.backgroundColor = UIColor.blue
         
         y = y + Int(width) + offset
         
         let height = Int(h) - y - offset - Int(toolBar.bounds.height)
+        scrollView.initUI()
         
         scrollView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width:width, height:CGFloat(height))
-        scrollView.backgroundColor = UIColor.red
-        scrollView.isScrollEnabled = true
+
+        //        scrollView.backgroundColor = UIColor.red
+//        scrollView.isScrollEnabled = true
         
         view.addSubview(scrollView)
         view.addSubview(previewView)
     }
 
     
-    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier == "cancel") {
+            return true
+        }
+        if (PhotoManager.sharedInstance.imageArr?.count == 0) {
+            let alert = UIAlertController(title: "", message: "사진을 1장 이상 촬영하세요.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
     
     @IBAction func takeItBtn(_ sender: AnyObject) {
         // 플래시 및 카메라 관련 설정
@@ -71,7 +85,6 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         
         // 촬영셔터 누름
         
-        let position = input?.device.position
         //settingsForMonitoring.flashMode = position == .front || position == .unspecified ? .off : .auto
         settingsForMonitoring.flashMode = .off
         
@@ -119,28 +132,31 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         if let photoSampleBuffer = photoSampleBuffer {
             // JPEG형식으로 이미지데이터 검색
             let photoData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
-            var image = UIImage(data: photoData!)
+            let image = UIImage(data: photoData!)
        
             // 사진보관함에 저장
 //            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
             
-            var aratio = (image?.size.height)! / (image?.size.width)!
-            var iv = UIImageView()
-            let ivHeight = scrollView.bounds.height-10
-            let ivWidth = ivHeight / aratio
             
-            iv.frame = CGRect(x: ivx, y: 5, width: Int(ivWidth), height: Int(ivHeight))
-            scrollView.addSubview(iv)
-            iv.image = image
+            scrollView.addImage(image: image!)
             
-            ivx += Int(ivWidth) + 5
             
-            var size = scrollView.contentSize
-            size.width += iv.bounds.width+5
-            scrollView.contentSize = size
+//            var aratio = (image?.size.height)! / (image?.size.width)!
+//            var iv = UIImageView()
+//            let ivHeight = scrollView.bounds.height-10
+//            let ivWidth = ivHeight / aratio
+//            
+//            iv.frame = CGRect(x: ivx, y: 5, width: Int(ivWidth), height: Int(ivHeight))
+//            scrollView.addSubview(iv)
+//            iv.image = image
+//            
+//            ivx += Int(ivWidth) + 5
+//            
+//            var size = scrollView.contentSize
+//            size.width += iv.bounds.width+5
+//            scrollView.contentSize = size
             
             PhotoManager.sharedInstance.imageArr?.append(image!)
-            PhotoManager.sharedInstance.scrollVSize = scrollView.bounds.size
         }
     }
     
@@ -160,17 +176,17 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     var cameraKind = ".back"
     
     
-    func getDevice(position: AVCaptureDevicePosition) -> AVCaptureDevice? {
-        let devices: NSArray = AVCaptureDevice.devices() as! NSArray;
-        for de in devices {
-            let deviceConverted = de as! AVCaptureDevice
-            if(deviceConverted.position == position){
-                return deviceConverted
-            }
-        }
-        return nil
-    }
-    
+//    func getDevice(position: AVCaptureDevicePosition) -> AVCaptureDevice? {
+//        let devices: NSArray = AVCaptureDevice.devices()! as NSArray;
+//        for de in devices {
+//            let deviceConverted = de as! AVCaptureDevice
+//            if(deviceConverted.position == position){
+//                return deviceConverted
+//            }
+//        }
+//        return nil
+//    }
+//    
 
     func initCamera() {
         //        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -211,11 +227,13 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
         NSLog("FR~")
         //captureDevice = getDevice(.Back)
         if (cameraKind == ".front" ){
-            device = getDevice(position: .back)
+            //device = getDevice(position: .back)
+            device = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
             cameraKind = ".back"
             //            initCamera()
         } else {
-            device = getDevice(position: .front)
+            //device = getDevice(position: .front)
+            device = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
             cameraKind = ".front"
         }
         initCamera()

@@ -32,10 +32,9 @@ class MyTableViewCell: UITableViewCell {
         
         iv = UIImageView()
         iv.frame = CGRect(x: gap, y: gap, width: height * CGFloat(ratio), height: height)
-        iv.backgroundColor = UIColor.red
         contentView.addSubview(iv)
         
-        var x = gap * 2 + height * CGFloat(ratio)
+        let x = gap * 2 + height * CGFloat(ratio)
         
         myLabel1 = UILabel()
         myLabel1.frame = CGRect(x: x, y: gap, width: labelWidth, height: labelHeight)

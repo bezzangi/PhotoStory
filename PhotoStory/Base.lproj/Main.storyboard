@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="홈" id="BUX-jp-K55">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="Flm-pn-aFf">
+                                        <barButtonItem key="leftBarButtonItem" enabled="NO" id="Flm-pn-aFf">
                                             <connections>
                                                 <segue destination="CPI-7b-zp5" kind="show" identifier="Edit" id="aYX-uX-uuT"/>
                                             </connections>
@@ -39,9 +39,32 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bj-si-f2a">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="Wd6-I6-nZe">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oNE-wI-7CS">
+                                            <rect key="frame" x="16" y="7" width="66" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Delete All"/>
+                                            <connections>
+                                                <action selector="deleteAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Re4-ED-aze"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JdU-Tr-ih0"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Soi-1O-lxi"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="btnToHide1" destination="Flm-pn-aFf" id="BFt-DM-NkD"/>
+                        <outlet property="btnToHide2" destination="oNE-wI-7CS" id="ZA9-Bi-tUZ"/>
+                        <outlet property="toolBar" destination="6bj-si-f2a" id="Rm7-OJ-1JO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,12 +89,12 @@
                                     <navigationItem title="카메라" id="Y0b-yz-GAe">
                                         <barButtonItem key="leftBarButtonItem" title="취소" id="yqB-uW-NOd">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="xpx-A6-MnF"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="cancel" id="xpx-A6-MnF"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="완료" id="0A2-x9-NO9">
                                             <connections>
-                                                <segue destination="a0j-OH-bOi" kind="show" id="GPX-xc-23B"/>
+                                                <segue destination="a0j-OH-bOi" kind="show" identifier="done" id="GPX-xc-23B"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -130,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVF-M8-rKr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="861.60000000000002" y="123.68815592203899"/>
+            <point key="canvasLocation" x="982" y="136"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="3yW-Bn-9Wh">
@@ -151,7 +174,7 @@
                                     <navigationItem title="편집" id="qYB-8F-f1n">
                                         <barButtonItem key="leftBarButtonItem" title="취소" id="4ZO-D9-unW">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" identifier="Main" id="zBn-9m-2y9"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="cancel" id="zBn-9m-2y9"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="완료" id="VMP-2d-eHz">
@@ -214,7 +237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5SG-gK-tXL"/>
+        <segue reference="GPX-xc-23B"/>
         <segue reference="zBn-9m-2y9"/>
     </inferredMetricsTieBreakers>
 </document>
