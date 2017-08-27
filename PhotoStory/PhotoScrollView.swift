@@ -46,7 +46,13 @@ class PhotoScrollView: UIScrollView {
         bigImageView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    
+    func reset() {
+        //let v:UIView
+        for _v in self.subviews {
+            _v.removeFromSuperview()
+        }
+        ivx = 0
+    }
     
     func addImage(image:UIImage) {
         let aratio = (image.size.height) / (image.size.width)

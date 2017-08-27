@@ -15,6 +15,8 @@ class EditViewController: UIViewController, UITextViewDelegate {
     var tvTitle = UITextField()
     var tvMemo = UITextView()
     var tvDate = UILabel()
+    var lPhoto = UILabel()
+    
     
     var lbPlaceHolder = UILabel()
     
@@ -52,20 +54,28 @@ class EditViewController: UIViewController, UITextViewDelegate {
         
         let size = PhotoManager.sharedInstance.scrollVSize
         
+        
+        lPhoto.frame = CGRect(x: offset, y: y, width:Int(w), height: 50)
+        
+        mainScrollView.addSubview(lPhoto)
+        y += Int(lPhoto.bounds.size.height) + offset
+        
         scrollView.initUI()
         scrollView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width:(size?.width)!, height:CGFloat((size?.height)!))
-        //scrollView.backgroundColor = UIColor.red
         scrollView.isScrollEnabled = true
         
         mainScrollView.addSubview(scrollView)
         
-        var _x = 5
-        
-        if ((PhotoManager.sharedInstance.imageArr?.count)!>0)
+        //if ((PhotoManager.sharedInstance.imageArr?.count)!>0)
+        var _c:Int
+        if (PhotoManager.sharedInstance.selectedStory == nil)
         {
+            scrollView.reset()
             for img in PhotoManager.sharedInstance.imageArr! {
                 scrollView.addImage(image: img)
             }
+            
+            _c = (PhotoManager.sharedInstance.imageArr?.count)!
             tvTitle.placeholder = "제목을 입력하세요"
             lbPlaceHolder.text = "메모를 입력하세요"
             
@@ -77,6 +87,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
             story = PhotoManager.sharedInstance.selectedStory
             
             let photoArr:NSMutableSet = (story?.mutableSetValue(forKey: "photo"))!
+            _c = (photoArr.count)
             scrollView.addImageUsingMutableSet(set: photoArr)
             
             tvTitle.text = story?.value(forKey: "title") as? String
@@ -85,11 +96,12 @@ class EditViewController: UIViewController, UITextViewDelegate {
             
             isEditMode = true
         }
+        lPhoto.text = "\(_c) 장의 사진"
+        
         
         tvDate.text = Util.getDateStr(date:date!)
         
-        
-        _x = 5
+        let _x = 5
         y += Int(scrollView.bounds.size.height) + offset
         tvTitle.frame = CGRect(x: _x, y: y, width:Int((size?.width)!), height: 40)
         tvTitle.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
@@ -175,6 +187,9 @@ class EditViewController: UIViewController, UITextViewDelegate {
         _title = Util.trim(str: tvTitle.text! as NSString)
         if (identifier == "cancel")
         {
+            PhotoManager.sharedInstance.imageArr?.removeAll()
+            PhotoManager.sharedInstance.selectedStory = nil
+            
             return true
         }
         
@@ -207,11 +222,11 @@ class EditViewController: UIViewController, UITextViewDelegate {
                                                          in: managedContext)!
             
             
-            var filePaths = ""
+            //var filePaths = ""
             for img in PhotoManager.sharedInstance.imageArr! {
                 let index = PhotoManager.sharedInstance.imageArr?.index(of: img)
-                let filePath = saveImageToDocumentDirectory(img, snum: 0, fnum: index!) + "|"
-                filePaths.append(filePath)
+                let filePath = saveImageToDocumentDirectory(img, snum: 0, fnum: index!)
+                //filePaths.append(filePath)
                 let photo = NSManagedObject(entity: entityPhoto,
                                             insertInto: managedContext)
                 photo.setValue(filePath, forKey: "path")
@@ -220,7 +235,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
                 photoArr.addObjects(from: [photo as Any])
             }
             
-            filePaths = String(filePaths.characters.dropLast())
+           // filePaths = String(filePaths.characters.dropLast())
             
             PhotoManager.sharedInstance.imageArr?.removeAll()
             

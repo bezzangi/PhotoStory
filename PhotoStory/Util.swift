@@ -155,23 +155,59 @@ class Util: NSObject {
         
     }
 
-    static func deletaAll() {
+    static func deleteStory(story :NSManagedObject) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        
-            for s in PhotoManager.sharedInstance.storyArr {
-                managedContext.delete(s)
-                do {
-                     try managedContext.save()
-                } catch {
-                        
-                }
+        let photo = story.mutableSetValue(forKey: "photo")
+        for p in photo {
+            managedContext.delete(p as! NSManagedObject)
+            let fileManager = FileManager.default
+            let directoryPath =  NSHomeDirectory().appending("/Documents/") as String
+            let filepath = directoryPath + ((p as! NSManagedObject).value(forKey: "path") as! String)
+            do {
+                try fileManager.removeItem(atPath: filepath )
             }
-        
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
+        }
+        managedContext.delete(story )
+        do {
+            try managedContext.save()
+        } catch {
+        }
+        Util.loadData()
     }
     
+    static func deletaAll() {
+        for s in PhotoManager.sharedInstance.storyArr {
+            deleteStory(story: s)
+        }
+    }
+//    static func deletaAll() {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        
+//            for s in PhotoManager.sharedInstance.storyArr {
+//                let photo = s.mutableSetValue(forKey: "photo")
+//                for p in photo {
+//                    managedContext.delete(p as! NSManagedObject)
+//                }
+//                managedContext.delete(s)
+//                
+//            }
+//            do {
+//                try managedContext.save()
+//            } catch {
+//            }
+//        PhotoManager.sharedInstance.storyArr.removeAll()
+//        PhotoManager.sharedInstance.monthStoryArray.removeAllObjects()
+//    }
+//    
     static func getDateStr(date:Date)->String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

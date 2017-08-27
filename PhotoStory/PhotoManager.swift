@@ -27,19 +27,11 @@ final class PhotoManager {
     func addImage(img:UIImage) {
         imageArr?.append(img)
     }
-//    func addSVSize(s:CGSize) {
-//        scrollVSize = s
-//    }
     var monthStoryArray : NSMutableDictionary!
     
     func initData() {
         monthStoryArray = NSMutableDictionary()
     }
-    
-    
-    
-    //var monthStoryArray:NSDictionary = NSDictionary()
-    
     func addMonthArray(story:NSManagedObject) {
         _ = monthStoryArray
         var storyArray:[NSManagedObject]? = []
@@ -54,10 +46,6 @@ final class PhotoManager {
         }
         storyArray?.append(story)
         monthStoryArray.setValue(storyArray, forKey: dateStr)
-
-//        NSLog("\(monthStoryArray)")
-//        NSLog("\(storyArray)")
-
     }
     
     func getSortedKeys() -> [NSString] {

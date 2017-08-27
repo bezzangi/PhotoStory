@@ -19,6 +19,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     //  카메라 영상 표시 위한 뷰
     @IBOutlet weak var cameraView: UIView!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var captureSesssion: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput?
     //var previewLayer: AVCaptureVideoPreviewLayer?
@@ -30,6 +31,11 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     var previewView = UIView()
     
     var scrollView = PhotoScrollView()
+    
+    func updateTitle() {
+        let count:Int = (PhotoManager.sharedInstance.imageArr?.count)!
+        navigationBar.topItem?.title = "카메라 (\(count))"
+    }
     
     func initUI() {
         
@@ -62,6 +68,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "cancel") {
             PhotoManager.sharedInstance.imageArr?.removeAll()
+            PhotoManager.sharedInstance.selectedStory = nil
             return true
         }
         if (PhotoManager.sharedInstance.imageArr?.count == 0) {
@@ -70,6 +77,7 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
             self.present(alert, animated: true, completion: nil)
             return false
         }
+        PhotoManager.sharedInstance.selectedStory = nil
         return true
     }
     
@@ -140,6 +148,8 @@ class CamViewController: UIViewController, AVCapturePhotoCaptureDelegate{
                         
             PhotoManager.sharedInstance.imageArr?.append(image!)
         }
+        
+        updateTitle()
     }
     
     override func viewDidLoad() {

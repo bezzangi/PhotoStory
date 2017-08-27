@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class StoryViewController: UIViewController {
 
@@ -14,6 +15,8 @@ class StoryViewController: UIViewController {
     var lTitle = UILabel()
     var lMemo = UITextView()
     var lDate = UILabel()
+    var lPhoto = UILabel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +29,16 @@ class StoryViewController: UIViewController {
         let width = Int(w)-offset * 2
         let size = PhotoManager.sharedInstance.scrollVSize
         
+        
+        lPhoto.frame = CGRect(x: offset, y: y, width:width, height: 50)
+        let _c:Int = (story?.mutableSetValue(forKey: "photo").count)!
+        lPhoto.text = "\(_c) 장의 사진"
+        view.addSubview(lPhoto)
+        
+        
+        y = y + Int(lPhoto.bounds.height) + offset
         scrollView.initUI()
         scrollView.frame = CGRect(x: offset, y: y, width:Int((size?.width)!), height: Int((size?.height)!))
-        
         let photoArr:NSMutableSet = (story?.mutableSetValue(forKey: "photo"))!
         scrollView.addImageUsingMutableSet(set: photoArr)
         
@@ -46,7 +56,7 @@ class StoryViewController: UIViewController {
         view.addSubview(lMemo)
         
         y = y + Int(lMemo.bounds.height) + offset
-        lDate.frame = CGRect(x: offset, y: y, width:width, height: 150)
+        lDate.frame = CGRect(x: offset, y: y, width:width, height: 50)
         lDate.text = Util.getDateStr(date: story?.value(forKey: "when") as! Date)
         view.addSubview(lDate)
         
@@ -62,6 +72,27 @@ class StoryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+
+//    @IBAction func delBtn(_ sender: Any) {
+//        Util.deleteStory(story:PhotoManager.sharedInstance.selectedStory!)
+//        performSegue(withIdentifier: "delete", sender: sender)
+//    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier == "delete") {
+            Util.deleteStory(story:PhotoManager.sharedInstance.selectedStory!)
+            PhotoManager.sharedInstance.selectedStory = nil
+            return true
+        } else if (identifier == "home") {
+            PhotoManager.sharedInstance.selectedStory = nil
+            return true
+        }
+        return true
+    }
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

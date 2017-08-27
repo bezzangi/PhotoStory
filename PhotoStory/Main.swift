@@ -51,6 +51,7 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
     var tableView = UITableView()
     
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var btnToHide1: UIBarButtonItem!
     @IBOutlet weak var btnToHide2: UIButton!
     
@@ -58,6 +59,11 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
     @IBAction func deleteAll(_ sender: Any) {
         Util.deletaAll()
         tableView.reloadData()
+        updateTitle()
+    }
+    
+    func updateTitle() {
+        navigationBar.topItem?.title = "스토리 (\(PhotoManager.sharedInstance.storyArr.count))"
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
@@ -80,7 +86,8 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        title = "The List"
+        updateTitle()
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -91,7 +98,6 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
         
-         
         view.backgroundColor = UIColor.lightGray
         
         let h = view.frame.height
@@ -116,7 +122,9 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         
         
         y += Int(tfFind.frame.height) + offset
-        let height = Int(h) - y - offset - Int(toolBar.bounds.height)
+        
+        //let height = Int(h) - y - offset - Int(toolBar.bounds.height)
+        let height = Int(h) - y - offset
         
         tableView.frame = CGRect(x: CGFloat(offset), y: CGFloat(y), width: w - 2 * CGFloat(offset), height: CGFloat(height))
         tableView.backgroundColor = UIColor.white
@@ -128,7 +136,9 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
         setScrollViewScreenSize()
         
         btnToHide1.title=""
-//        btnToHide2.removeFromSuperview()
+        btnToHide2.removeFromSuperview()
+       // PhotoManager.sharedInstance.storyArr.count
+        toolBar.removeFromSuperview()
         
     }
 
@@ -193,8 +203,13 @@ class Main: UIViewController, UITableViewDelegate, UITableViewDataSource ,UIText
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let allKeys = PhotoManager.sharedInstance.getSortedKeys()
+        let key = allKeys[section]
+        let arr = PhotoManager.sharedInstance.monthStoryArray.object(forKey: key) as! NSArray
+        let count = arr.count
         
-        return allKeys[section] as String
+//        let rtv = (allKeys[section] as String) + " (\(count))"
+//        return allKeys[section] as String
+        return (key as String) + " (\(count))"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
