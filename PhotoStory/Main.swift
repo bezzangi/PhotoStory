@@ -7,37 +7,6 @@
 //
 
 
-// core data
-// https://www.youtube.com/watch?v=My2TP_tnyk4
-// http://seorenn.blogspot.kr/2014/03/iososx-coredata-1.html
-// https://stackoverflow.com/questions/36397971/multiple-images-in-a-single-entry-core-data-in-swift
-// https://petermcintyre.com/topics/uiimage-in-core-data/
-//
-// good tutorial, downloaded code works
-// https://www.raywenderlich.com/145809/getting-started-core-data-tutorial
-///
-
-
-// custom table cell
-// http://studyswift.blogspot.kr/2015/09/uitableviewcell-create-custom-prototype.html
-
-// table view cell event
-// https://www.weheartswift.com/how-to-make-a-simple-table-view-with-ios-8-and-swift/
-
-// core data
-// https://www.youtube.com/watch?v=da6W7wDh0Dw
-// https://www.youtube.com/watch?v=FPQS0bfdhGc
-
-//웹서버 엑셀 문서 읽기 라이브러리 수정
-//
-//증상 : 워닝 메시지 발생
-//원인 : php 문법 변화
-//조치 :  /data/www/html/lib/Excel/reader.php 파일 수정
-//관련 문서 :
-//https://stackoverflow.com/questions/17187970/deprecated-assigning-the-return-value-of-new-by-reference-is-deprecated-in-phpe
-
-
-
 
 
 import UIKit

@@ -5,8 +5,6 @@
 //  Created by Younghwa Park on 24/08/2017.
 //  Copyright © 2017 Bezzangi. All rights reserved.
 //
-// https://stackoverflow.com/questions/28756363/how-to-capture-picture-with-avcapturesession-in-swift
-// https://github.com/linhcn/AVCamSample
 
 
 import UIKit
